@@ -19,8 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username', // Tambahkan
         'email',
         'password',
+        'role',     // Tambahkan
     ];
 
     /**
@@ -44,5 +46,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Opsional: Tambahkan helper method untuk cek role (sangat berguna)
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isManager()
+    {
+        return $this->role === 'manager';
+    }
+
+    public function isStaff()
+    {
+        return $this->role === 'staff';
     }
 }
